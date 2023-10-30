@@ -60,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 form {
+  margin-top: 20px;
   display: flex;
   input {
     padding: 10px;
@@ -71,7 +72,7 @@ form {
     width: 100px;
     height: 50px;
     border-radius: 0 5px 5px 0;
-    background-color: var(--accent-100);
+    background-color: var(--bg-100);
     font-weight: 600;
     color: var(--text-100);
   }

@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <TaskForm />
-    <GetTasks />
+    <div class="PostTask">
+        <TaskForm />
+    </div>
+    <div class="allTasks">
+        <GetTasks />
+    </div>
   </div>
 </template>
 
@@ -30,9 +34,21 @@ export default {
 
 <style lang="scss" scoped>
 .home{
-    width: 90%;
-    max-width: 600px;    
-    margin: 0 auto;
-    padding: 20px 0;
+    .PostTask{
+        width: 90%;
+        max-width: 600px;    
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+    .allTasks{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        margin: 0 20px;
+        // media
+        @media (max-width: 800px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
 }
 </style>
