@@ -15,7 +15,7 @@
                 </small>
             </div>
             <div class="d-flex align-items-center justify-content-between mt-3 mb-3">
-                <div class="d-flex gap-1">
+                <div class="d-flex gap-1 align-items-center">
                     <input type="checkbox" />
                     <label for="">Remember Me</label>
                 </div>

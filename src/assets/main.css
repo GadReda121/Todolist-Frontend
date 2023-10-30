@@ -15,3 +15,10 @@ body{
   font-family: 'Roboto', sans-serif;
   background-color: var(--primary-300) !important;
 }
+
+input[type="checkbox"]{
+  width: 15px;
+  height: 15px;
+  accent-color: var(--primary-300);
+  cursor: pointer;
+}
