@@ -28,7 +28,7 @@
             </div>
             <!-- NOT HAVE -->
             <div class="notHave text-center">
-                <h6>Haven't Account? <RouterLink to="/signUp">Create Now</RouterLink></h6>
+                <h6>Haven't Account? <RouterLink to="/Register">Create Now</RouterLink></h6>
             </div>
         </form>
     </div>
@@ -67,7 +67,10 @@ export default {
         LogIn() {
             this.v$.$validate();
             if (!this.v$.$error) { 
-                this.signIn(this.state.form); 
+               let status = this.signIn(this.state.form)
+                status.then(() => {
+                    this.$router.push('/')
+                })
             }
         }
     }

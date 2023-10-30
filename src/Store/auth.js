@@ -1,6 +1,6 @@
 import axios from "axios";
-import Cookies from "js-cookie";
-import { useToast } from 'vue-toastification';
+import toast from '../components/utils/toast';
+import catchError from "../components/utils/catch";
 
 export default {
     namespaced:true,
@@ -30,22 +30,12 @@ export default {
             let response = await axios
               .post("/auth/login", credentials)
               .then((result) => {
-                const toast = useToast();
-                toast.info(`تم تسجيل الدخول بنجاح`, {
-                  position: "top-right",
-                  timeout: 5000,
-                  closeOnClick: true,
-                  pauseOnFocusLoss: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  draggablePercent: 0.6,
-                  showCloseButtonOnHover: false,
-                  hideProgressBar: false,
-                  closeButton: "button",
-                  icon: true,
-                  rtl: true,
-                });
+                if(result.status == 200){
+                  toast.success('Log in Successfully')
+                }
                 return result;
+              }).catch((e) => {
+                catchError(e);
               });
               dispatch('attempt', response.data.data.token);
         },
@@ -54,17 +44,11 @@ export default {
             let response = await axios
               .post("auth/register", credit)
               .then((result) => {
-                const toast = useToast();
-                toast.info(`تم التسجيل بنجاح`, {
-                  position: "top-right",
-                  timeout: 5000,
-                  closeOnClick: true,
-                  pauseOnFocusLoss: true
-                });
+                toast.success('Register Successfully')
                 return result;
               })
               .catch((e) => {
-                  console.log(e);
+                  catchError(e);
               });
             let token = response.data.data.user.token;
             dispatch("attempt", token);
@@ -88,44 +72,18 @@ export default {
         signOut({commit, state}) {
             return axios
               .get("/auth/logout")
-              .then(() => {
+              .then((response) => {
+                if(response.status == 200){
+                  toast.success('Log out Successfully')
+                }
                 commit("SET_TOKEN", null);
                 commit("SET_USER", null);
               })
               .then((result) => {
-                const toast = useToast();
-                toast.info(`تم تسجيل الخروج بنجاح`, {
-                  position: "top-right",
-                  timeout: 5000,
-                  closeOnClick: true,
-                  pauseOnFocusLoss: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  draggablePercent: 0.6,
-                  showCloseButtonOnHover: false,
-                  hideProgressBar: false,
-                  closeButton: "button",
-                  icon: true,
-                  rtl: true,
-                });
                 return result;
               })
-              .catch(() => {
-                const toast = useToast();
-                toast.error("حدث خطأ ، حاول مرة أخرى", {
-                  position: "top-right",
-                  timeout: 5000,
-                  closeOnClick: true,
-                  pauseOnFocusLoss: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  draggablePercent: 0.6,
-                  showCloseButtonOnHover: false,
-                  hideProgressBar: true,
-                  closeButton: "button",
-                  icon: true,
-                  rtl: false,
-                });
+              .catch((e) => {
+                catchError(e);
               });
         }
     },
