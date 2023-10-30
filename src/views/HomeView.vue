@@ -1,37 +1,38 @@
 <template>
-  <div>
-    <h1>Home</h1>
-    <mark>{{ user.email }}</mark>
-    <ul>
-      <li v-for="task in tasks" :key="task.id">
-        {{ task.title }}
-      </li>
-    </ul>
+  <div class="home">
+    <TaskForm />
+    <GetTasks />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import axios from 'axios';
+import TaskForm from '../components/home/TaskForm.vue';
+import GetTasks from '../components/home/GetTasks.vue';
 
 export default {
-  name: 'HomeView',
-  data(){
-    return {
-      tasks: []
-    }
-  },
-  computed:{
-    ...mapGetters({
-      'user': 'auth/user'
-    })
-  },
-  mounted(){
-    axios.get('/tasks')
-      .then(response => {
-        this.tasks = response.data.data.tasks;
-      })
-      .catch(error => console.log(error.response.data));
-  }
+    name: 'HomeView',
+    data() {
+        return {
+
+        };
+    },
+    computed: {
+        ...mapGetters({
+            'user': 'auth/user'
+        })
+    },
+    mounted() {
+    },
+    components: { TaskForm, GetTasks }
 };
 </script>
+
+<style lang="scss" scoped>
+.home{
+    width: 90%;
+    max-width: 600px;    
+    margin: 0 auto;
+    padding: 20px 0;
+}
+</style>

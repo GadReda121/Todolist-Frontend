@@ -1,4 +1,5 @@
 @import url('./css/varaibles.scss');
+@import url('./css/toast');
 
 *{
   padding: 0;
@@ -7,9 +8,10 @@
   scroll-behavior: smooth;
   outline: none;
   border: none;
+  word-break: break-all;
 }
 
 body{
   font-family: 'Roboto', sans-serif;
-  background-color: var(--bg);
+  background-color: var(--primary-300) !important;
 }

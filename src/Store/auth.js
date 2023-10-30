@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useToast } from 'vue-toastification';
 
 export default {
@@ -47,6 +48,27 @@ export default {
                 return result;
               });
               dispatch('attempt', response.data.data.token);
+        },
+        async register({ dispatch }, credit) {
+            // store token
+            let response = await axios
+              .post("auth/register", credit)
+              .then((result) => {
+                const toast = useToast();
+                toast.info(`تم التسجيل بنجاح`, {
+                  position: "top-right",
+                  timeout: 5000,
+                  closeOnClick: true,
+                  pauseOnFocusLoss: true
+                });
+                return result;
+              })
+              .catch((e) => {
+                  console.log(e);
+              });
+            let token = response.data.data.user.token;
+            dispatch("attempt", token);
+            // Cookies.set("JWT", token, { expires: 365 });
         },
         async attempt({ commit, state}, token) {
             if (token) {

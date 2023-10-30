@@ -23,6 +23,12 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue'),
       beforeEnter: checkUser
     },
+    {
+      path: '/Register',
+      name: 'Register',
+      component: () => import('../views/RegisterView.vue'),
+      beforeEnter: checkUser
+    },
     // {
     //   path: '/:pathMatch(.*)*',
     //   name: 'not-found',

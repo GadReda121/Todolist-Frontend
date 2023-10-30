@@ -1,11 +1,11 @@
 .contact{
-    background: linear-gradient(-45deg, var(--color1), var(--color2));
+    background: linear-gradient(-45deg, var(--bg-300), var(--bg-200));
     max-width: 500px;
     width: 90%;
     margin: auto;
     padding: 30px 20px;
     border-radius: 10px;
-    color: var(--color3);
+    color: var(--text-100);
     form{
         width: 100%;
         .child{
@@ -28,8 +28,8 @@
                 border-radius: 5px;
                 height: 50px;
                 padding: 0 10px;
-                background: var(--color3);
-                color: var(--color1);
+                background: var(--primary-200);
+                color: var(--text-100);
                 font-weight: bold;
                 cursor: pointer;
                 transition: all 0.3s ease;
